@@ -60,7 +60,7 @@ under the License.
                 </entity-one>
                 <!-- parameters for the performFind service -->
                 <set field="parameters.forumId" from-field="parameters.forumId" default-value="${parameters.contentId}"/>
-                <set field="viewIndex" from-field="parameters.VIEW_INDEX" type="Integer"/>
+                <set field="viewIndex" from-field="parameters.VIEW_INDEX" type="Integer" default-value="0" />
                 <set field="viewSizeDefaultValue" value="${groovy: modelTheme.getDefaultViewSize()}" type="Integer"/>
                 <set field="viewSize" from-field="parameters.VIEW_SIZE" type="Integer" default-value="${viewSizeDefaultValue}"/>
                 <entity-condition entity-name="ContentAssocViewTo" list="forumMessages" >
@@ -92,10 +92,10 @@ under the License.
                                         <!-- old link converted during URLs securing, seems busted... no time to look at detail...-->
                                         <!--link style="buttontext" target="AddForumThread?forumId=${parameters.forumId}&amp;forumMessageIdTo=&amp;threadView=${parameters.threadView?if_exists}&amp;VIEW_INDEX=${parameters.VIEW_INDEX}" text="${uiLabelMap.PageTitleNewMessage}"/-->
                                         <link style="buttontext" target="AddForumThread" text="${uiLabelMap.PageTitleNewMessage}">
+                                            <parameter param-name="VIEW_INDEX" from-field="viewIndex"/>
                                             <parameter param-name="forumId" from-field="parameters.forumId"/>
                                             <parameter param-name="forumMessageIdTo" value=""/>
                                             <parameter param-name="threadView" from-field="parameters.threadView"/>
-                                            <parameter param-name="VIEW_INDEX" from-field="parameters.VIEW_INDEX"/>
                                           </link>
                                     </widgets>
                                 </section>
